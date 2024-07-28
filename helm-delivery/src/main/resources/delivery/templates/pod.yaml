@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ include "delivery.fullname" . }}
+  labels:
+    app: delivery
+spec:
+  hostname: delivery
+  containers:
+    - name: {{ .Chart.Name }}
+      image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+      imagePullPolicy: Always
+      ports:
+        - containerPort: 8087
